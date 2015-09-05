@@ -1,5 +1,5 @@
 class Token
-  attr_reader :type, :value
+  attr_reader :type
 
   def initialize(type, value)
     @type, @value = type, value
@@ -8,6 +8,10 @@ class Token
   def ==(other)
    value == other.value &&
    type  == other.type
+  end
+
+  def value
+    @type == :int ? @value.to_i : @value
   end
 end
 

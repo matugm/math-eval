@@ -13,7 +13,7 @@ describe Calculator do
     expect(subject.evaluate("20 / 2")).to eq 10
   end
 
-  xit 'can do more complicated math' do
+  it 'can do more complicated math' do
     expect(subject.evaluate("3 + 4 + 4 + 2 * 2 * 2" )).to eq 19
   end
 end
@@ -25,7 +25,7 @@ describe Lexer do
     token = lex.parse('3').first
 
     expect(token.type).to eq :int
-    expect(token.value).to eq '3'
+    expect(token.value).to eq 3
   end
 
   it 'can parse a plus operator' do
