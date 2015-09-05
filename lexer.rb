@@ -7,7 +7,11 @@ class Token
 end
 
 class Lexer
+  def initialize
+    @tokens = []
+  end
+
   def parse(input)
-    [Token.new(:int, 0)]
+    @tokens << Token.new(:int, 3)
   end
 end

@@ -23,6 +23,15 @@ describe Lexer do
 
   it 'can parse a single number' do
     token = lex.parse('3').first
+
     expect(token.type).to eq :int
+    expect(token.value).to eq 3
+  end
+
+  it 'can parse a plus operator' do
+    token = lex.parse('+').first
+
+    expect(token.type).to eq :op
+    expect(token.value).to eq '+'
   end
 end
