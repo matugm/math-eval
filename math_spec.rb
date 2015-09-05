@@ -25,7 +25,7 @@ describe Lexer do
     token = lex.parse('3').first
 
     expect(token.type).to eq :int
-    expect(token.value).to eq 3
+    expect(token.value).to eq '3'
   end
 
   it 'can parse a plus operator' do
@@ -33,5 +33,17 @@ describe Lexer do
 
     expect(token.type).to eq :op
     expect(token.value).to eq '+'
+  end
+
+  it 'can parse an expression' do
+    tokens = lex.parse('25 * 10')
+
+    expected_tokens = [
+      Token.new(:int, '25'),
+      Token.new(:op, '*'),
+      Token.new(:int, '10')
+    ]
+
+    expect(tokens).to eq expected_tokens
   end
 end
