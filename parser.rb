@@ -11,7 +11,7 @@ class ExpressionParser
   end
 
   def run
-    @tokens.each_with_index do |token, idx|
+    @tokens.each do |token|
       @output << token and next if token.type == :int
 
       while operator_priority_is_less_or_equal_than(token)
