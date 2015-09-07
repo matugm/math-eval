@@ -2,6 +2,7 @@ require 'strscan'
 
 require_relative 'lexer'
 require_relative 'parser'
+require_relative 'eval'
 
 class Calculator
   def evaluate(string)
@@ -20,6 +21,9 @@ def calc(expression)
   tokens = lexer.parse(expression)
 
   # Convert to postfix notation
-  parser = ExpressionParser.new(tokens)
-  parser.run
+  parser  = ExpressionParser.new(tokens)
+  postfix_exp = parser.run
+
+  # Evaluate
+  evaluator = PostfixEvaluator.new.run(postfix_exp.output)
 end

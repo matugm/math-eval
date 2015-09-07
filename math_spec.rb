@@ -15,6 +15,9 @@ describe Calculator do
 
   it 'can do more complicated math' do
     expect(subject.evaluate("3 + 4 + 4 + 2 * 2 * 2 + 10" )).to eq 29
+  end
+
+  it 'can solve extra compicated math' do
     expect(subject.evaluate("21 + 3 / 2 * 1 + 7 * 3 + 8 * 1 - 1 + 12 + 5 + 15 * 3")).to eq 112
   end
 end
@@ -63,6 +66,20 @@ describe ExpressionParser do
   }
 
   it 'can convert an expression from infix to postfix notation' do
-    expect(parser.run).to eq "25 10 * 5 +"
+    expect(parser.run.to_s).to eq "25 10 * 5 +"
+  end
+end
+
+describe PostfixEvaluator do
+  tokens = [
+    Token.new(:int, '25'),
+    Token.new(:int, '10'),
+    Token.new(:op, '*'),
+    Token.new(:int, '5'),
+    Token.new(:op, '+'),
+  ]
+
+  it 'can evaluate a simple postfix expression' do
+    expect(subject.run(tokens)).to eq 255
   end
 end
