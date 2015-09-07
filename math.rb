@@ -19,7 +19,7 @@ def calc(expression)
   lexer  = Lexer.new
   tokens = lexer.parse(expression)
 
-  # Evaluation
-  evaluator = ExpressionParser.new(tokens)
-  evaluator.run
+  # Convert to postfix notation
+  parser = ExpressionParser.new(tokens)
+  parser.run
 end

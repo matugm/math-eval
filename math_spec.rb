@@ -48,3 +48,21 @@ describe Lexer do
     expect(tokens).to eq expected_tokens
   end
 end
+
+describe ExpressionParser do
+  let(:parser) {
+    tokens = [
+      Token.new(:int, '25'),
+      Token.new(:op, '*'),
+      Token.new(:int, '10'),
+      Token.new(:op, '+'),
+      Token.new(:int, '5')
+    ]
+
+    ExpressionParser.new(tokens)
+  }
+
+  it 'can convert an expression from infix to postfix notation' do
+    expect(parser.run).to eq "25 10 * 5 +"
+  end
+end
