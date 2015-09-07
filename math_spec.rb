@@ -14,7 +14,8 @@ describe Calculator do
   end
 
   it 'can do more complicated math' do
-    expect(subject.evaluate("3 + 4 + 4 + 2 * 2 * 2" )).to eq 19
+    expect(subject.evaluate("3 + 4 + 4 + 2 * 2 * 2 + 10" )).to eq 29
+    expect(subject.evaluate("21 + 3 / 2 * 1 + 7 * 3 + 8 * 1 - 1 + 12 + 5 + 15 * 3")).to eq 112
   end
 end
 

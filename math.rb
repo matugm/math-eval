@@ -1,8 +1,7 @@
 require 'strscan'
 
 require_relative 'lexer'
-require_relative 'parser_2'
-require_relative 'engine'
+require_relative 'parser'
 
 class Calculator
   def evaluate(string)
@@ -18,9 +17,9 @@ def calc(expression)
 
   # Parsing
   lexer  = Lexer.new
-  ast    = lexer.parse(expression)
+  tokens = lexer.parse(expression)
 
   # Evaluation
-  evaluator = ExpressionParser.new(ast)
+  evaluator = ExpressionParser.new(tokens)
   evaluator.run
 end

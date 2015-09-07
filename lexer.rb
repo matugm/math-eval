@@ -1,19 +1,4 @@
-class Token
-  attr_reader :type
-
-  def initialize(type, value)
-    @type, @value = type, value
-  end
-
-  def ==(other)
-   value == other.value &&
-   type  == other.type
-  end
-
-  def value
-    @type == :int ? @value.to_i : @value
-  end
-end
+require_relative 'token'
 
 class Lexer
   RULES = {
@@ -38,10 +23,10 @@ class Lexer
 
   def read_tokens
     RULES.each do |regex, type|
-      match = @buffer.peek(10).match(regex)
+      token = @buffer.rest.match(regex)
 
-      if match
-        @tokens << Token.new(type, match[0])
+      if token
+        @tokens << Token.new(type, token[0])
         @buffer.skip_until(regex)
       end
     end
