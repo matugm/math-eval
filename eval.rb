@@ -12,7 +12,7 @@ class PostfixEvaluator
 
         raise 'Invalid postfix expression' unless right_num && left_num
 
-        result = evaluate(right_num.value, left_num.value, token)
+        result = evaluate(left_num.value, right_num.value, token)
         @numbers << Token.new(:int, result)
       end
     end
@@ -20,7 +20,7 @@ class PostfixEvaluator
     @numbers.last.value
   end
 
-  def evaluate(right_num, left_num, operation)
+  def evaluate(left_num, right_num, operation)
     case operation.value
     when '+' then left_num + right_num
     when '-' then left_num - right_num
