@@ -1,6 +1,6 @@
 require_relative 'token'
 
-class Lexer
+class Tokenizer
   RULES = {
     /\d+/   => :int,
     /[\/+\-*]/ => :op

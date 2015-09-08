@@ -1,4 +1,4 @@
-require_relative 'math.rb'
+require_relative '../math.rb'
 
 describe Calculator do
   it 'can do basic operations' do
@@ -22,8 +22,8 @@ describe Calculator do
   end
 end
 
-describe Lexer do
-  let(:lex) { Lexer.new }
+describe Tokenizer do
+  let(:lex) { Tokenizer.new }
 
   it 'can parse a single number' do
     token = lex.parse('3').first
