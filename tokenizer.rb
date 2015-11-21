@@ -23,11 +23,10 @@ class Tokenizer
 
   def read_tokens
     RULES.each do |regex, type|
-      token = @buffer.rest.match(regex)
+      token = @buffer.scan(regex)
 
       if token
-        @tokens << Token.new(type, token[0])
-        @buffer.skip_until(regex)
+        @tokens << Token.new(type, token)
       end
     end
   end
