@@ -12,13 +12,8 @@ class ExpressionParser
 
   def run
     @tokens.each do |token|
-      @output << token and next if token.type == :int
-
-      while operator_priority_is_less_or_equal_than(token)
-        @output << @operators.pop
-      end
-
-      @operators << token
+      push_number(token)      if token.type == :int
+      process_operator(token) if token.type == :op
     end
 
     @output += @operators.reverse
@@ -26,12 +21,24 @@ class ExpressionParser
     self
   end
 
-  def to_s
-    @output.map { |t| t.value }.join(" ")
+  def push_number(token)
+    @output << token
+  end
+
+  def process_operator(token)
+    while operator_priority_is_less_or_equal_than(token)
+      @output << @operators.pop
+    end
+
+    @operators << token
   end
 
   def operator_priority_is_less_or_equal_than(token)
     @operators.last && (token.priority <= @operators.last.priority.to_i)
+  end
+
+  def to_s
+    @output.map(&:value).join(" ")
   end
 
   def show_stack

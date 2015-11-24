@@ -1,6 +1,9 @@
 require_relative '../math.rb'
 
 describe Calculator do
+  let(:expression)         { "3 + 4 + 4 + 2 * 2 * 2 + 10" }
+  let(:complex_expression) { "21 + 3 / 2 * 1 + 7 * 3 + 8 * 1 - 1 + 12 + 5 + 15 * 3" }
+
   it 'can do basic operations' do
     expect(subject.evaluate("3+4")).to eq 7
   end
@@ -14,11 +17,11 @@ describe Calculator do
   end
 
   it 'can do more complicated math' do
-    expect(subject.evaluate("3 + 4 + 4 + 2 * 2 * 2 + 10" )).to eq 29
+    expect(subject.evaluate(expression)).to eq 29
   end
 
-  it 'can solve extra compicated math' do
-    expect(subject.evaluate("21 + 3 / 2 * 1 + 7 * 3 + 8 * 1 - 1 + 12 + 5 + 15 * 3")).to eq 112
+  it 'can solve extra complicated math' do
+    expect(subject.evaluate(complex_expression)).to eq 112
   end
 end
 
@@ -53,17 +56,15 @@ describe Tokenizer do
 end
 
 describe ExpressionParser do
-  let(:parser) {
-    tokens = [
-      Token.new(:int, '25'),
-      Token.new(:op, '*'),
-      Token.new(:int, '10'),
-      Token.new(:op, '+'),
-      Token.new(:int, '5')
-    ]
+  tokens = [
+    Token.new(:int, '25'),
+    Token.new(:op, '*'),
+    Token.new(:int, '10'),
+    Token.new(:op, '+'),
+    Token.new(:int, '5')
+  ]
 
-    ExpressionParser.new(tokens)
-  }
+  let(:parser) { ExpressionParser.new(tokens) }
 
   it 'can convert an expression from infix to postfix notation' do
     expect(parser.run.to_s).to eq "25 10 * 5 +"

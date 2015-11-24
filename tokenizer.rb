@@ -2,7 +2,7 @@ require_relative 'token'
 
 class Tokenizer
   RULES = {
-    /\d+/   => :int,
+    /\d+/      => :int,
     /[\/+\-*]/ => :op
   }
 
@@ -22,13 +22,12 @@ class Tokenizer
   end
 
   def read_tokens
-    RULES.each do |regex, type|
-      token = @buffer.scan(regex)
+    RULES.each { |regex, type| find_token(regex, type) }
+  end
 
-      if token
-        @tokens << Token.new(type, token)
-      end
-    end
+  def find_token(regex, type)
+    token = @buffer.scan(regex)
+    @tokens << Token.new(type, token) if token
   end
 
   def skip_spaces

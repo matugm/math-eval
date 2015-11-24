@@ -16,7 +16,7 @@ class Calculator
     tokens = lexer.parse(expression)
 
     # Convert to postfix notation
-    parser  = ExpressionParser.new(tokens)
+    parser      = ExpressionParser.new(tokens)
     postfix_exp = parser.run
 
     # Evaluate
