@@ -11,7 +11,7 @@ class Calculator
       return expression.to_i
     end
 
-    # Parsing input string
+    # Parse input string
     lexer  = Tokenizer.new
     tokens = lexer.parse(expression)
 
@@ -20,6 +20,6 @@ class Calculator
     postfix_exp = parser.run
 
     # Evaluate
-    evaluator = PostfixEvaluator.new.run(postfix_exp.output)
+    PostfixEvaluator.new.run(postfix_exp.output)
   end
 end
