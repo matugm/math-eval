@@ -34,7 +34,7 @@ class ExpressionParser
   end
 
   def operator_priority_is_less_or_equal_than(token)
-    @operators.last && (token.priority <= @operators.last.priority.to_i)
+    @operators.last && (token.priority <= @operators.last.priority)
   end
 
   def to_s
